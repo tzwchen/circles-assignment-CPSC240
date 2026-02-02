@@ -4,11 +4,10 @@ extern printf ;c++ function to write to standard output
 extern scanf ; reads from standard input
 
 global circle ;exported function
+global isfloat 
 
 ;declarations
 segment .data 
-
-askradius db "Please enter a float number and press <enter>:" 10, 0
 
 thanksmsg db "thank you for your input", 10, 0
 
@@ -31,9 +30,10 @@ segment .text ;code segment
 circle:  ;the entry point for the function
 
     ;prompt user for radius
-    push askradius 
-    call printf
-    add rsp, 4
+    call isfloat ; call isfloat 
+    mov rdi, askfloat ; load the address into rdi
+    call printf ; displays the message
+    
 
     ;read radius input
     lea rax, [radius] ; loads the address of radius into rax
