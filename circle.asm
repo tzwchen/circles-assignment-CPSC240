@@ -2,9 +2,10 @@
 
 extern printf ;c++ function to write to standard output
 extern scanf ; reads from standard input
+extern isfloat ; isfloat is an external function
 
 global circle ;exported function
-global isfloat 
+
 
 ;declarations
 segment .data 
@@ -31,9 +32,6 @@ circle:  ;the entry point for the function
 
     ;prompt user for radius
     call isfloat ; call isfloat 
-    mov rdi, askfloat ; load the address into rdi
-    call printf ; displays the message
-    
 
     ;read radius input
     lea rax, [radius] ; loads the address of radius into rax
