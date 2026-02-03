@@ -39,7 +39,6 @@ circle:  ;the entry point for the function
 
     ;calculate the area of the circle, area = pi * r^2, sd = scalar double
     movsd xmm0, [radius] ; load radius into xmm0 
-    push xmm0 ; push radius onto the stack
     movsd xmm1, xmm0  ; copy radius
     mulsd xmm0, xmm1 ; squares radius
     movsd xmm1, [pi] ; load pi into xmm1
