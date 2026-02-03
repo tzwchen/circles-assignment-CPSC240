@@ -18,6 +18,10 @@ invalidmsg db "Invalid input, please try again: ", 10, 0
 segment .text
 
 isfloat:
+    ;set up stack frame
+    push rbp
+    mov rbp, rsp
+    sub rsp, 16 ;alloc space for local var
 
     ;prompt user for float input
     mov rdi, askfloat
@@ -43,4 +47,5 @@ isfloat:
         mov rdi, validmsg
         call printf ;print valid message
 
+        leave ;restores the stack frame
         ret ;return 

@@ -27,6 +27,11 @@ segment .text ;code segment
 
 circle:  ;the entry point for the function
 
+    ;stack frame
+    push rbp
+    mov rbp, rsp
+    sub rsp, 16 ;allocate space on stack if needed
+    
     ;prompt user for radius
     call isfloat ; call isfloat 
 
