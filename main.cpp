@@ -4,7 +4,7 @@ using namespace std;
 
 extern "C" {
     double circle();
-    int isfloat(const char* str);
+    int isfloat();
 }
 
 int main() {

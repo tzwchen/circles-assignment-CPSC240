@@ -2,7 +2,7 @@
 echo "Compiling and running circle program..."
 
 nasm -f elf64 -o circle.o circle.asm
-g++ -o circle main.cpp circle.o
+g++ -o circle main.cpp circle.o -no-pie
 ./circle
 rm circle
 
