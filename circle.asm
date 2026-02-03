@@ -19,11 +19,8 @@ sent_msg db "The area will be sent to the main function", 10, 0
 format_string db "%f", 0 ; format string for scanf
 pi dq 3.14159 ; constant value of pi
 
-;uninitialized data declarations
-section .bss
-
-radius resq 1 ; reserve space for radius (8 bytes)
-area resq 1   ; reserve space for area (8 bytes)
+radius dq 0.0 ; variable to hold radius input
+area dq 0.0 ; variable to hold area result
 
 
 segment .text ;code segment
@@ -41,14 +38,13 @@ circle:  ;the entry point for the function
     add rsp, 16 ;clears stack, 16 bytes 8 (radius) + 8 (format string)
 
     ;calculate the area of the circle, area = pi * r^2, sd = scalar double
-    mov sd xmm0, [radius] ; load radius into xmm0 
+    movsd xmm0, [radius] ; load radius into xmm0 
     push xmm0 ; push radius onto the stack
-    mov sd xmm1, xmm0  ; copy radius
-    mul sd xmm0, xmm1 ; squares radius
-    mov sd xmm1, [pi] ; load pi into xmm1
-    mul sd xmm0, xmm1 
-    mov sd [area], xmm0l ; moves value of xmm01 (area) back to memory onto variabe area
-
+    movsd xmm1, xmm0  ; copy radius
+    mulsd xmm0, xmm1 ; squares radius
+    movsd xmm1, [pi] ; load pi into xmm1
+    mulsd xmm0, xmm1 
+    movsd [area], xmm0 ; moves value of xmm0 (area) back to memory onto variabe area
     ;thanks message
     push thanksmsg
     call printf
