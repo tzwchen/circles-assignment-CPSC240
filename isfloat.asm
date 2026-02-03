@@ -30,13 +30,21 @@ isfloat:
         push format_string ;formats for scanf
         call scanf ;pushes format string and address to store input
         add rsp, 16 
-    
-    ;check if input is a float
-    cmp qword [rsp-8], 0 ;checks if input is zero
-    je .isfloat_invalid; if zero, its invalid
+        
+        ;check if input is a float
+        cmp qword [rsp-8], 0 ;checks if input is zero
+        je .isfloat_invalid; if zero, its invalid, je stands for jump if equal
+        
+        ;if valid input, jumps to .isfloat_valid
+        jmp .isfloat_valid
+        
+    .isfloat_invalid:
+        mov rdi, invalidmsg
+        call printf ;print invalid message
+        jmp .isfloat_loop ;loop back to ask again
+        
+    .isfloat_valid:
+        mov rdi validmsg
+        call printf ;print valid message
 
-    ;if valid input
-    mov rdi validmsg
-    call printf ;print valid message
-
-    ret ;return 
+        ret ;return 
