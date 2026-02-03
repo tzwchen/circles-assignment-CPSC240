@@ -31,7 +31,7 @@ circle:  ;the entry point for the function
     push rbp
     mov rbp, rsp
     sub rsp, 16 ;allocate space on stack if needed
-    
+
     ;prompt user for radius
     call isfloat ; call isfloat 
 
@@ -66,5 +66,6 @@ circle:  ;the entry point for the function
     call printf
     add rsp, 8
 
+    leave 
     ret 
 ;end of function
