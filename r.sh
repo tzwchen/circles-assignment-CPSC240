@@ -1,4 +1,4 @@
 #!/bin/bash
-g++ -o circles main.cpp circles.asm
-./circles
-rm circles
+g++ -o circle main.cpp circle.asm
+./circle
+rm circle
