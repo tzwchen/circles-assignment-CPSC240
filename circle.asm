@@ -16,11 +16,14 @@ area_msg db "The area of the circle with radius %f is %f", 10, 0
 
 sent_msg db "The area will be sent to the main function", 10, 0
 
-format_string db "%f", 0 ; format string for scanf
+format_string db "%lf", 0 ; format string for scanf
 pi dq 3.14159 ; constant value of pi
 
-radius dq 0.0 ; variable to hold radius input
-area dq 0.0 ; variable to hold area result
+;uninitialized variables
+segment .bss
+
+radius resq 1
+area resq 1 
 
 
 segment .text ;code segment
@@ -30,17 +33,11 @@ circle:  ;the entry point for the function
     ;stack frame
     push rbp
     mov rbp, rsp
-    sub rsp, 16 ;allocate space on stack if needed
 
     ;prompt user for radius
     call isfloat ; call isfloat 
+    movsd [radius], xmm0 ; store the float in radius
 
-    ;read radius input
-    lea rax, [radius] ; loads the address of radius into rax
-    push rax ; push rax onto the stack
-    push format_string ;push format string onto the stack
-    call scanf 
-    add rsp, 16 ;clears stack, 16 bytes 8 (radius) + 8 (format string)
 
     ;calculate the area of the circle, area = pi * r^2, sd = scalar double
     movsd xmm0, [radius] ; load radius into xmm0 
@@ -49,22 +46,24 @@ circle:  ;the entry point for the function
     movsd xmm1, [pi] ; load pi into xmm1
     mulsd xmm0, xmm1 
     movsd [area], xmm0 ; moves value of xmm0 (area) back to memory onto variabe area
+
     ;thanks message
-    push thanksmsg
+    mov rdi, thanksmsg 
+    xor eax, eax
     call printf
-    add rsp, 8
 
     ;print area message
-    push qword [area] ; push area value onto stack
-    push qword [radius] ; push radius value onto stack
-    push area_msg ; push format string onto stack
+    mov rdi, area_msg
+    movsd xmm0, [radius] ; load radius into xmm0 for printf
+    movsd xmm1, [area] ; load area into xmm1 for printf
+    mov eax, 2 ;passing 2 floats (using xmm0 and xmm1)
     call printf
-    add rsp, 24; clean stack 8 (area) + 8 (radius) + 8 (format string)
 
     ;sent message
-    push sent_msg
+    mov rdi, sent_msg
+    xor eax, eax
     call printf
-    add rsp, 8
+ 
 
     leave 
     ret 

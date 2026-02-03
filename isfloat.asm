@@ -2,6 +2,7 @@
 
 extern printf 
 extern scanf 
+extern getchar
 
 global isfloat
 
@@ -46,6 +47,11 @@ isfloat:
     .isfloat_valid:
         mov rdi, validmsg
         call printf ;print valid message
+        call getchar  ; clears newline character
+
+        ;move valid float from local var to xmm0
+        movss xmm0, dword [rbp-8]
+        cvtss2sd xmm0, xmm0 ;convert scalar single to scalar double
 
         leave ;restores the stack frame
         ret ;return 
