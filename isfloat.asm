@@ -10,7 +10,7 @@ global isfloat
 ;declarations
 
 segment .data
-format_string db "%f", 0 ; format string for scanf
+format_string db "%lf", 0 ; format string for scanf
 askfloat db "Please enter a float number and press <enter>:", 10, 0
 validmsg db "This is a valid input, thank you.", 10, 0
 invalidmsg db "Invalid input, please try again: ", 10, 0
@@ -41,17 +41,20 @@ isfloat:
      ;else, input is invalid
        mov rdi, invalidmsg
        call printf ;print invalid message
+       .clear_input: ; will clear the invalid input to avoid infinte loops
+            call getchar ;clears first char 
+            cmp rax, 10 ; checks for newline character, if there is...
+            je .isfloat_loop ; if it wsa just one char loop again
+            jne .clear_input ;loops again if there are multiple chars in the invalid
        jmp .isfloat_loop ;loop again
-    
-
+      
     .isfloat_valid:
         mov rdi, validmsg
         call printf ;print valid message
         call getchar  ; clears newline character
 
         ;move valid float from local var to xmm0
-        movss xmm0, dword [rbp-8]
-        cvtss2sd xmm0, xmm0 ;convert scalar single to scalar double
+        movsd xmm0, qword [rbp-8]
 
         leave ;restores the stack frame
         ret ;return 

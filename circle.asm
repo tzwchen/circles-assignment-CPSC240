@@ -25,7 +25,6 @@ segment .bss
 radius resq 1
 area resq 1 
 
-
 segment .text ;code segment
 
 circle:  ;the entry point for the function

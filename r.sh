@@ -6,6 +6,6 @@ nasm -f elf64 -o isfloat.o isfloat.asm
 
 g++ -o circle main.cpp circle.o isfloat.o -no-pie
 ./circle
-rm circle
+rm circle.o isfloat.o circle
 
-echo "Done."
+echo "Done. All files cleaned up."
