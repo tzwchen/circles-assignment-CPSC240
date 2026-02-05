@@ -14,10 +14,37 @@ for more details. *
 //<https://www.gnu.org/licenses/>. The copyright holder may be contacted here: tchen2006@csu.fullerton.edu *
 //****************************************************************************************************************************/
 
-;Purpose of this file, isfloat.asm is to get a valid float number from user input. The function isfloat will
-;prompt the user to enter a float number, then it will read the input using scanf and validate it. If the input is valid, it will return the float 
-;number in xmm0 register.
-
+;========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1=========2=========3**
+;
+;Author information
+;  Author name: Tristan Chen
+;  Author email: tchen2006@csu.fullerton.edu
+;
+;Program information
+;  Program name: Circles
+;  Programming languages: main module in C++, circles and isfloat modules in x86 assembly language with Intel syntax, shell scripts written in BASH
+;  Date of last update: 2026-Feb-4
+;  Date comments upgraded: 2026-Feb-5
+;  Date open source license added: 2026-Feb-4
+;  Files in this program: circle.asm, isfloat.asm, main.cpp, r.sh
+;  Status: Finished.
+;  Future upgrade possible: None that are currently envisioned.
+;
+;Overarching Purpose: The purpose of this program is to calculate the area of a circle based on user input radius. The main module is written in C++ and 
+; will call the circle function (implemented in circle.asm) to get the area of the circle, 
+; then it will print the area to standard output. The circle function will call the isfloat function (implemented in isfloat.asm) to 
+; get a valid float radius from the user, then it will calculate the area of the circle using the formula area = pi * r^2.
+;
+;Purpose of this file:  isfloat.asm is to get a valid float number from user input. The function isfloat will
+; prompt the user to enter a float number, then it will read the input using scanf and validate it. If the input is valid, it will return the float 
+; number in xmm0 register.
+;
+;This file
+;  File name: isfloat.asm
+;  Language: X86 with Intel syntax.
+;  Max page width: 80 columns
+;  Compile: nasm -f elf64 -l isfloat.lis -o isfloat.o isfloat.asm
+;  Link: gcc -no-pie -o circles main.cpp circle.o isfloat.o
 
 
 ;Begin code

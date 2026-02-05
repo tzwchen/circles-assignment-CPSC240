@@ -14,6 +14,8 @@
 #//<https://www.gnu.org/licenses/>. The copyright holder may be contacted here: tchen2006@csu.fullerton.edu *
 #//****************************************************************************************************************************/
 
+#Author: Tristan Chen
+#Program name: Circles
 
 #!/bin/bash
 echo "Compiling and running circle program..."
