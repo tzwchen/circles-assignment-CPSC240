@@ -81,11 +81,11 @@ isfloat:
     .isfloat_loop:
        mov rdi, format_string
        lea rsi, [rbp-8] ;gives scanf address of local var to store input
-       xor eax, eax ;clear rax 
+       xor rax, rax ;clear rax 
        call scanf
 
      ;if eax == 1, input is a valid float 
-       cmp eax, 1 
+       cmp rax, 1 
        je .isfloat_valid 
      ;else, input is invalid
        mov rdi, invalidmsg

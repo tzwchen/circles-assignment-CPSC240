@@ -98,19 +98,19 @@ circle:  ;the entry point for the function
 
     ;thanks message
     mov rdi, thanksmsg 
-    xor eax, eax
+    xor rax, rax
     call printf
 
     ;print area message
     mov rdi, area_msg
     movsd xmm0, [radius] ; load radius into xmm0 for printf
     movsd xmm1, [area] ; load area into xmm1 for printf
-    mov eax, 2 ;passing 2 floats (using xmm0 and xmm1)
+    mov rax, 2 ;passing 2 floats (using xmm0 and xmm1)
     call printf
 
     ;sent message
     mov rdi, sent_msg
-    xor eax, eax
+    xor rax, rax
     call printf
  
 
