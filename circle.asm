@@ -23,7 +23,7 @@
 ;Program information
 ;  Program name: Circles
 ;  Programming languages: main module in C++, circles and isfloat modules in x86 assembly language with Intel syntax, shell scripts written in BASH
-;  Date of last update: 2026-Feb-4
+;  Date of last update: 2026-Feb-6
 ;  Date comments upgraded: 2026-Feb-5
 ;  Date open source license added: 2026-Feb-4
 ;  Files in this program: circle.asm, isfloat.asm, main.cpp, r.sh

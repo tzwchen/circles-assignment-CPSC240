@@ -23,7 +23,7 @@ for more details. *
 //  Program name: Circles
 //  Programming languages: C++ and X86 Assembly and BASH
 //  Date program began: 2026-Jan-26
-//  Date of last update: 2026-Feb-04
+//  Date of last update: 2026-Feb-06
 //  Date comments upgraded: 2026-Feb-05
 //  Date open source license added: 2026-Feb-04
 //  Files in this program: main.cpp, circle.asm, isfloat.asm, r.sh
