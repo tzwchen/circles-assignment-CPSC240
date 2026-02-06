@@ -84,7 +84,7 @@ isfloat:
        xor rax, rax ;clear rax 
        call scanf
 
-     ;if eax == 1, input is a valid float 
+     ;if rax == 1, input is a valid float 
        cmp rax, 1 
        je .isfloat_valid 
      ;else, input is invalid
